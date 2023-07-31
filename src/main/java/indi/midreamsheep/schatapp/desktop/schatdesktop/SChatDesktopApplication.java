@@ -11,7 +11,7 @@ import java.io.IOException;
 public class SChatDesktopApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SChatDesktopApplication.class.getResource("account/guidance.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SChatDesktopApplication.class.getResource("controller/account/guidance.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         GuidanceController controller = (GuidanceController) fxmlLoader.getController();
         controller.init();
