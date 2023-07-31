@@ -1,9 +1,8 @@
-package indi.midreamsheep.schatapp.desktop.schatdesktop.account;
+package indi.midreamsheep.schatapp.desktop.schatdesktop.controller.account;
 
 import indi.midreamsheep.schatapp.desktop.schatdesktop.until.ui.style.SChatStyleManagement;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 

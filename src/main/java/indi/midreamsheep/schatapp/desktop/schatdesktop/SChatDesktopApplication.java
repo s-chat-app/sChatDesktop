@@ -1,12 +1,9 @@
 package indi.midreamsheep.schatapp.desktop.schatdesktop;
 
-import indi.midreamsheep.schatapp.desktop.schatdesktop.account.GuidanceController;
+import indi.midreamsheep.schatapp.desktop.schatdesktop.controller.account.GuidanceController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 
 import java.io.IOException;
