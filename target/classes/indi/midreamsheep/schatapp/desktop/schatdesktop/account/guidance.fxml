@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="indi.midreamsheep.schatapp.desktop.schatdesktop.account.GuidanceController">
    <children>
-      <Button fx:id="login" alignment="CENTER" graphicTextGap="10.0" layoutX="24.0" layoutY="264.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="550.0" style="-fx-background-radius: 10; -fx-background-color: linear-gradient(to right, #9dd2f6, #57cff8,#9dd2f6);" text="Login" textAlignment="CENTER" textFill="#000000fa">
+      <Button fx:id="login" alignment="CENTER" graphicTextGap="10.0" layoutX="24.0" layoutY="264.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="550.0" style="-fx-background-radius: 10; -fx-background-color: linear-gradient(to right, #9dd2f6, #57cff8,#9dd2f6);" text="Login" textAlignment="CENTER" textFill="#1f1e33fa">
          <font>
             <Font size="20.0" />
          </font>
@@ -22,7 +22,7 @@
             <String fx:value="btn-lg" />
          </styleClass>
       </Button>
-      <Button layoutX="24.0" layoutY="328.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="550.0" style="-fx-background-color: linear-gradient(to right, #9dd2f6, #57cff8,#9dd2f6); -fx-background-radius: 10;" styleClass="btn" text="Register" />
+      <Button layoutX="493.0" layoutY="328.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: linear-gradient(to right, #9dd2f6, #57cff8,#9dd2f6); -fx-background-radius: 10;" text="Register" textFill="WHITE" />
       <Text fx:id="descriptionText" layoutX="95.0" layoutY="389.0" strokeType="OUTSIDE" text="Copyright©2023 midreamsheep" textAlignment="CENTER" wrappingWidth="407.01708984375">
          <font>
             <Font size="9.0" />
@@ -44,17 +44,17 @@
          <children>
             <ImageView fitHeight="303.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                <image>
-                  <Image url="@bg.gif" />
+                  <Image url="@bg.jpg" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeWidth="0.0" text="SChatApp-Desktop" textAlignment="CENTER" wrappingWidth="601.8402290344238" GridPane.rowIndex="2">
                <font>
-                  <Font size="40.0" />
+                  <Font name="STHupo" size="45.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="get started" textAlignment="CENTER" wrappingWidth="601.840259552002" GridPane.rowIndex="4">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Get started" textAlignment="CENTER" wrappingWidth="601.840259552002" GridPane.rowIndex="4">
                <font>
-                  <Font name="System Bold" size="29.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
             </Text>
          </children>

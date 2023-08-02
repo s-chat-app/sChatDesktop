@@ -44,17 +44,17 @@
          <children>
             <ImageView fitHeight="303.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                <image>
-                  <Image url="@bg.gif" />
+                  <Image url="@bg.jpg" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeWidth="0.0" text="SChatApp-Desktop" textAlignment="CENTER" wrappingWidth="601.8402290344238" GridPane.rowIndex="2">
                <font>
-                  <Font size="40.0" />
+                  <Font name="Nirmala UI Semilight" size="45.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="get started" textAlignment="CENTER" wrappingWidth="601.840259552002" GridPane.rowIndex="4">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Get started" textAlignment="CENTER" wrappingWidth="601.840259552002" GridPane.rowIndex="4">
                <font>
-                  <Font name="System Bold" size="29.0" />
+                  <Font name="Microsoft YaHei" size="29.0" />
                </font>
             </Text>
          </children>
