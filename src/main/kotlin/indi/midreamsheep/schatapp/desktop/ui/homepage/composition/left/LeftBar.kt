@@ -1,42 +1,48 @@
 package indi.midreamsheep.schatapp.desktop.ui.homepage.composition.left
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material.icons.outlined.Face
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import indi.midreamsheep.schatapp.desktop.ui.theme.MainTheme
 
 @Composable
 @Preview
 fun LeftBar(modifier: Modifier) {
+
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally){
-        IconButton(onClick = {}) {
-            Icon(Icons.Outlined.Menu, contentDescription = "Localized description")
+        Spacer(modifier = Modifier.height(8.dp))
+        //头像
+        OutlinedIconButton(onClick = {},
+                shape = RoundedCornerShape(100),
+            modifier = Modifier.size(47.dp).border(1.dp, Color(232, 224, 228), RoundedCornerShape(100))
+            ) {
+            Image(painterResource("icon/none.png"), contentDescription = "Localized description",modifier = Modifier.fillMaxSize())
         }
-        Column (modifier = Modifier.weight(19f).verticalScroll(rememberScrollState())){
+        Spacer(modifier = Modifier.height(25.dp))
+        //服务器列表
+        Column (modifier = Modifier.weight(1f).verticalScroll(rememberScrollState())){
             for (i in 1..10) {
-                OutlinedButton(
+                OutlinedIconButton(
                     onClick = { },
-                    border = BorderStroke(1.dp, Color.Red),
-                    shape = RoundedCornerShape(
-                        topStartPercent = 100,
-                        bottomStartPercent = 100,
-                    ),
-                    // or shape = CircleShape
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Red),
+                    border = BorderStroke(1.dp, MainTheme.background),
+                    shape = RoundedCornerShape(25),
+                    modifier = Modifier.height(42.dp).width(42.dp)
                 ) {
-                    Text(text = "服务器$i", lineHeight = 2.sp)
+                    Image(
+                        painterResource("icon/chi_tang.png"), contentDescription = "Localized description"
+                        ,modifier = Modifier.size(42.dp))
                 }
+                Spacer(modifier = Modifier.height(10.dp))
             }
         }
     }

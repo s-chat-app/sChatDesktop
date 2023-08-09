@@ -9,5 +9,6 @@
         <module name="desktop" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="17" />
   </component>
 </project>

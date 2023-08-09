@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -15,13 +16,11 @@ import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.left.LeftBar
 @Composable
 @Preview
 fun homePage(){
-    MaterialTheme{
-        Row(modifier = Modifier.fillMaxSize(),
-            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
-        ) {
-            LeftBar(Modifier.weight(1f))
-            ChatList(Modifier.weight(4f))
-            ChatWindow(Modifier.weight(15f))
-        }
+    Row(
+        modifier = Modifier.fillMaxSize(),
+    ) {
+        LeftBar(Modifier.weight(70f).background(MaterialTheme.colors.primary))
+        ChatList(Modifier.weight(280f).background(MaterialTheme.colors.primary))
+        ChatWindow(Modifier.weight(800f).background(MaterialTheme.colors.primary))
     }
 }

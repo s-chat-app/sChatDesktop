@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
@@ -20,27 +21,26 @@ import androidx.compose.ui.input.key.*
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import indi.midreamsheep.schatapp.desktop.ui.theme.MainTheme
 
 @Composable
 @Preview
 fun ChatWindow(modifier: Modifier) {
     Column (modifier){
-        toolBar(Modifier.height(50.dp))
-        chat(Modifier.weight(1f))
-        input(Modifier.height(50.dp))
+        toolBar(Modifier.height(50.dp).background(MainTheme.secondaryVariant))
+        chat(Modifier.weight(1f).background(MainTheme.background))
+        input(Modifier.height(50.dp).background(MainTheme.secondary))
     }
 }
 
 @Composable
 fun toolBar(modifier: Modifier) {
-    Row(modifier) {
-        //TODO 左边的信息
+    Row(modifier.background(MainTheme.secondaryVariant)) {
         Column {
             Text("chat_name", fontSize = 20.sp, modifier = Modifier.padding(bottom = 5.dp))
             Text("chat_info", fontSize = 10.sp)
         }
         Spacer(modifier = Modifier.weight(1f))
-        //TODO 右边的图标
         Row (horizontalArrangement = Arrangement.End) {
             Icon(Icons.Outlined.Menu, contentDescription = "menu")
             Icon(Icons.Outlined.KeyboardArrowRight, contentDescription = "menu")
@@ -50,7 +50,7 @@ fun toolBar(modifier: Modifier) {
 
 @Composable
 fun chat(modifier: Modifier) {
-    Column(modifier) {
+    Column(modifier.background(MainTheme.background)) {
         for (i in 1..10) {
             messageCard()
             messageCard(true)
