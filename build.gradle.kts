@@ -19,6 +19,8 @@ dependencies {
     implementation(compose.material3)
     implementation(compose.ui)
     implementation("org.xerial:sqlite-jdbc:3.27.2.1")
+    /*导入本地jar包*/
+    implementation(files("libs/SChatCommunicationFramework.jar"))
 }
 
 compose.desktop {
