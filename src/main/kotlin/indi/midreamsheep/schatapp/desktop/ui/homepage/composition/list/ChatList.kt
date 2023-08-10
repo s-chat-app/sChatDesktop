@@ -33,15 +33,24 @@ fun ChatList(modifier: Modifier) {
             //设置颜色
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color(0xff4D444C),
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
             ),
             value = text,
             onValueChange = { text = it },
             singleLine = true,
             leadingIcon = {
-                Image(
-                    painterResource("icon/search.png"), contentDescription = "Search",
-                    modifier = Modifier.clickable { text = "" }.size(17.5.dp)
-                )
+                IconButton(
+                    onClick = { text = "" },
+                    modifier = Modifier
+                        .size(17.5.dp)
+                ) {
+                    Icon(
+                        Icons.Outlined.Search,
+                        contentDescription = "menu",
+                        tint = Color(0xffE8E0E4)
+                    )
+                }
             },
             shape = RoundedCornerShape(24.dp),
             modifier = Modifier.onPreviewKeyEvent {
@@ -52,19 +61,29 @@ fun ChatList(modifier: Modifier) {
                     }
                     else -> false
                 }
-            }.size(width = 260.dp, height = 50.dp))
+            }.size(width = 260.dp, height = 45.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         Column(
             Modifier.weight(1f).verticalScroll(rememberScrollState())
         ){
             for (i in 1..10) {
-
-                Column(
+                Row(
                     Modifier.padding(10.dp).clickable {
-
                     }
                 ){
-                    Text("#main", fontSize = 15.sp, color = Color(0xffE8E0E4), modifier = Modifier.padding(bottom = 5.dp))
-                    Text("chat_info", fontSize = 15.sp, color = Color(0xffE8E0E4))
+                    Image(
+                        painterResource("icon/user.png"), contentDescription = "Avatar",
+                        modifier = Modifier.size(35.dp)
+                    )
+                    Column(Modifier.padding(start = 10.dp)){
+                        Text("chat_name", fontSize = 15.sp, color = Color(0xffE8E0E4))
+                        Text("chat_info", fontSize = 10.sp, color = Color(0xffE8E0E4))
+                    }
+                    Spacer(modifier = Modifier.weight(1f))
+                    Column {
+                        Text("chat_unread", fontSize = 10.sp, color = Color(0xffE8E0E4))
+                        Text("chat_time", fontSize = 10.sp, color = Color(0xffE8E0E4))
+                    }
                 }
             }
         }
