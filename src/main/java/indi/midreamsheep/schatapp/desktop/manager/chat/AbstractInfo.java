@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class AbstractInfo {
@@ -17,4 +16,36 @@ public class AbstractInfo {
     protected String name;
     /**聊天头像,url*/
     protected String headPictureUrl;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public ChatType getType() {
+        return type;
+    }
+
+    public void setType(ChatType type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getHeadPictureUrl() {
+        return headPictureUrl;
+    }
+
+    public void setHeadPictureUrl(String headPictureUrl) {
+        this.headPictureUrl = headPictureUrl;
+    }
 }

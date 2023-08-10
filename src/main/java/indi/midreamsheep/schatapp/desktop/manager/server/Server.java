@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Server {
@@ -31,5 +30,45 @@ public class Server {
         server.setGroupManager(new GroupManager());
         server.setChannelManager(new ChannelManager());
         return server;
+    }
+
+    public ServerMeta getServerMeta() {
+        return serverMeta;
+    }
+
+    public void setServerMeta(ServerMeta serverMeta) {
+        this.serverMeta = serverMeta;
+    }
+
+    public ServerData getServerData() {
+        return serverData;
+    }
+
+    public void setServerData(ServerData serverData) {
+        this.serverData = serverData;
+    }
+
+    public IndividualManager getIndividualManager() {
+        return individualManager;
+    }
+
+    public void setIndividualManager(IndividualManager individualManager) {
+        this.individualManager = individualManager;
+    }
+
+    public GroupManager getGroupManager() {
+        return groupManager;
+    }
+
+    public void setGroupManager(GroupManager groupManager) {
+        this.groupManager = groupManager;
+    }
+
+    public ChannelManager getChannelManager() {
+        return channelManager;
+    }
+
+    public void setChannelManager(ChannelManager channelManager) {
+        this.channelManager = channelManager;
     }
 }
