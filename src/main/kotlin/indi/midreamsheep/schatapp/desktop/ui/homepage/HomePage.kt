@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import indi.midreamsheep.schatapp.desktop.manager.GlobalManager
+import indi.midreamsheep.schatapp.desktop.manager.server.Server
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.list.ChatList
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.chat.ChatWindow
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.left.LeftBar
@@ -20,9 +21,20 @@ fun homePage(){
     Row(
         modifier = Modifier.fillMaxSize(),
     ) {
-        var manager = remember { mutableStateOf (GlobalManager.build()) }
-        LeftBar(Modifier.weight(70f).background(MaterialTheme.colors.primary),manager)
-        ChatList(Modifier.weight(280f).background(MaterialTheme.colors.primary))
+        val manager = remember { mutableStateOf (GlobalManager.build()) }
+        val currentServer = remember { mutableStateOf(manager.value.currentServer) }
+
+        LeftBar(Modifier.weight(70f).background(MaterialTheme.colors.primary),manager){
+            m,s ->
+            GlobalManager.setCurrentServer(m,s)
+            currentServer.value = s
+        }
+
+        ChatList(Modifier.weight(280f).background(MaterialTheme.colors.primary),currentServer){
+            server,info->
+            Server.setCurrentInfo(server,info)
+        }
+
         ChatWindow(Modifier.weight(800f).background(MaterialTheme.colors.primary))
     }
 }

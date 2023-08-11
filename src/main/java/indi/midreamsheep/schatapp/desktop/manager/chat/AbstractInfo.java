@@ -48,4 +48,21 @@ public class AbstractInfo {
     public void setHeadPictureUrl(String headPictureUrl) {
         this.headPictureUrl = headPictureUrl;
     }
+
+    public AbstractInfo(long id, ChatType type, String name, String headPictureUrl) {
+        this.id = id;
+        this.type = type;
+        this.name = name;
+        this.headPictureUrl = headPictureUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "AbstractInfo{" +
+                "id=" + id +
+                ", type=" + type +
+                ", name='" + name + '\'' +
+                ", headPictureUrl='" + headPictureUrl + '\'' +
+                '}';
+    }
 }
