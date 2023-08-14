@@ -7,25 +7,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import cn.hutool.core.util.IdUtil
 import indi.midreamsheep.schatapp.desktop.manager.GlobalManager
 import indi.midreamsheep.schatapp.desktop.manager.chat.AbstractInfo
 import indi.midreamsheep.schatapp.desktop.manager.server.Server
-import indi.midreamsheep.schatapp.desktop.service.command.SChatCommandment
+import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.list.ChatList
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.chat.ChatWindow
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.left.LeftBar
 import indi.midreamsheep.schatapp.frame.net.entity.pojo.Message
 import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import java.sql.Timestamp
 import java.util.SortedMap
 
 @Composable
 @Preview
 fun homePage(
     globalManager: GlobalManager,
-    create: Observable<SChatCommandment>
+    create: Observable<UpdateSignal>
 ) {
     val manager = remember { mutableStateOf(globalManager) }
     val currentServer = remember { mutableStateOf(manager.value.currentServer) }
@@ -40,14 +37,14 @@ fun page(
     currentServer: MutableState<Server>,
     currentInfo: MutableState<AbstractInfo>,
     currentMessages: MutableState<SortedMap<Long, Message>>,
-    observable: Observable<SChatCommandment>
+    observable: Observable<UpdateSignal>
 ){
     Row(
         modifier = Modifier.fillMaxSize(),
     ) {
-        val produceState = produceState(initialValue = SChatCommandment.getInstance()) {
+        val produceState = produceState(initialValue = UpdateSignal.getInstance()) {
             observable.subscribe {
-                value = SChatCommandment.getInstance(value)
+                value = UpdateSignal.getInstance(value)
             }
         }
         LeftBar(Modifier.weight(70f).background(MaterialTheme.colors.primary), manager) { m, s ->

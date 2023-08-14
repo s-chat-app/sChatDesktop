@@ -21,7 +21,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import indi.midreamsheep.schatapp.desktop.manager.chat.AbstractInfo
-import indi.midreamsheep.schatapp.desktop.service.command.SChatCommandment
+import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal
 import indi.midreamsheep.schatapp.desktop.ui.theme.MainTheme
 import indi.midreamsheep.schatapp.frame.net.entity.pojo.Message
 import java.util.*
@@ -32,7 +32,7 @@ fun ChatWindow(
     modifier: Modifier,
     currentInfo: MutableState<AbstractInfo>,
     currentMessages: MutableState<SortedMap<Long, Message>>,
-    produceState: State<SChatCommandment>,
+    produceState: State<UpdateSignal>,
 ) {
 
     Card(
@@ -76,7 +76,7 @@ fun toolBar(modifier: Modifier, currentInfo: MutableState<AbstractInfo>) {
 fun chat(
     modifier: Modifier,
     currentInfo: MutableState<SortedMap<Long, Message>>,
-    produceState: State<SChatCommandment>
+    produceState: State<UpdateSignal>
 ) {
     val update = produceState.value
     var message by remember{ mutableStateOf(currentInfo.value.values.toList()) }

@@ -3,16 +3,20 @@ package indi.midreamsheep.schatapp.desktop.manager.server;
 import androidx.compose.runtime.MutableState;
 import indi.midreamsheep.schatapp.desktop.manager.chat.AbstractInfo;
 import indi.midreamsheep.schatapp.desktop.manager.chat.individual.IndividualManager;
-import indi.midreamsheep.schatapp.desktop.service.command.SChatCommandment;
+import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal;
+import indi.midreamsheep.schatapp.desktop.service.config.SChatConfiguration;
 import indi.midreamsheep.schatapp.frame.net.SChatCommunication;
 import indi.midreamsheep.schatapp.frame.net.SChatCommunicationBuilder;
 import io.reactivex.ObservableEmitter;
+import lombok.Data;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class Server {
-
+    /**服务器元数据 忽略setget*/
     private static final Server RECOMPOSE = new Server();
 
     /**服务器元数据*/
@@ -42,41 +46,6 @@ public class Server {
         return server;
     }
 
-    public static void setBuilder(SChatCommunicationBuilder builder, ObservableEmitter<SChatCommandment> emitter) {
-        //注入处理器
-    }
-
-    public ServerMeta getServerMeta() {
-        return serverMeta;
-    }
-
-    public void setServerMeta(ServerMeta serverMeta) {
-        this.serverMeta = serverMeta;
-    }
-
-    public ServerData getServerData() {
-        return serverData;
-    }
-
-    public void setServerData(ServerData serverData) {
-        this.serverData = serverData;
-    }
-
-    public IndividualManager getIndividualManager() {
-        return individualManager;
-    }
-
-    public void setIndividualManager(IndividualManager individualManager) {
-        this.individualManager = individualManager;
-    }
-
-    public AbstractInfo getCurrentInfo() {
-        return currentInfo;
-    }
-
-    public void setCurrentInfo(AbstractInfo currentInfo) {
-        this.currentInfo = currentInfo;
-    }
 
     public List<AbstractInfo> getInfos() {
         /*        infos.addAll(groupManager);
@@ -94,6 +63,7 @@ public class Server {
     public void set(SChatCommunication build) {
         this.build = build;
         //TODO 设置build的服务提供者
+
     }
 
     public void init() {

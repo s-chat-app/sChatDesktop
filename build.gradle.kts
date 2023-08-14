@@ -3,6 +3,8 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 plugins {
     kotlin("jvm")
     id("org.jetbrains.compose")
+    kotlin("plugin.lombok") version "1.9.0"
+    id("io.freefair.lombok") version "8.1.0"
 }
 
 group = "indi.midreamsheep.schatapp.desktop"

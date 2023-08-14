@@ -3,6 +3,7 @@ package indi.midreamsheep.schatapp.desktop.manager.chat;
 import indi.midreamsheep.schatapp.frame.net.entity.chat.ChatType;
 import indi.midreamsheep.schatapp.frame.net.entity.pojo.Message;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.*;
@@ -10,6 +11,7 @@ import java.util.concurrent.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class AbstractInfo {
     /**聊天唯一id*/
     protected long id;
@@ -31,55 +33,6 @@ public class AbstractInfo {
         this.headPictureUrl = headPictureUrl;
     }
 
-    @Override
-    public String toString() {
-        return "AbstractInfo{" +
-                "id=" + id +
-                ", type=" + type +
-                ", name='" + name + '\'' +
-                ", headPictureUrl='" + headPictureUrl + '\'' +
-                '}';
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public ChatType getType() {
-        return type;
-    }
-
-    public void setType(ChatType type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getHeadPictureUrl() {
-        return headPictureUrl;
-    }
-
-    public void setHeadPictureUrl(String headPictureUrl) {
-        this.headPictureUrl = headPictureUrl;
-    }
-
-    public SortedMap<Long, Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(SortedMap<Long, Message> messages) {
-        this.messages = messages;
-    }
 
     public List<Message> getMessageList() {
         return messages.values().stream().toList();
