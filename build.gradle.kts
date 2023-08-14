@@ -21,6 +21,8 @@ dependencies {
     implementation("org.xerial:sqlite-jdbc:3.27.2.1")
     /*导入本地jar包*/
     implementation(files("libs/SChatCommunicationFramework.jar"))
+    implementation("io.reactivex.rxjava2:rxjava:2.2.10")
+
 }
 
 compose.desktop {

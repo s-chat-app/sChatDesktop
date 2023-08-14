@@ -3,6 +3,8 @@ package indi.midreamsheep.schatapp.desktop.ui.homepage.composition.left
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -23,10 +25,21 @@ import indi.midreamsheep.schatapp.desktop.ui.util.image.loadImageBitmap
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
-fun LeftBar(modifier: Modifier, manager: MutableState<GlobalManager>,update:(MutableState<GlobalManager>,Server)->Unit) {
-    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally){
+fun LeftBar(modifier: Modifier,
+            manager: MutableState<GlobalManager>,
+            update:(
+                MutableState<GlobalManager>,
+                Server
+                    ) ->Unit
+) {
+
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        //上边界
         Spacer(modifier = Modifier.height(8.dp))
-        //头像
+        //个人头像
         OutlinedIconButton(onClick = {},
             shape = RoundedCornerShape(100),
             modifier = Modifier
@@ -37,11 +50,12 @@ fun LeftBar(modifier: Modifier, manager: MutableState<GlobalManager>,update:(Mut
                 contentDescription = "Localized description",
                 modifier = Modifier.fillMaxSize())
         }
+        //中间空白
         Spacer(modifier = Modifier.height(25.dp))
         //服务器列表
-        Column (modifier = Modifier.weight(1f).verticalScroll(rememberScrollState())){
-            for (server in manager.value.serverList) {
-                serverItem(server,manager,update)
+        LazyColumn  (modifier = Modifier.weight(1f)){
+            items(manager.value.serverList){
+                serverItem(it,manager,update)
             }
         }
     }

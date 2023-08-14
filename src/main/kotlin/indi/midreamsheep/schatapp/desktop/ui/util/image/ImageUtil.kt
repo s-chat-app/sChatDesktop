@@ -3,6 +3,9 @@ package indi.midreamsheep.schatapp.desktop.ui.util.image
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Build
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
@@ -14,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.res.loadSvgPainter
 import androidx.compose.ui.res.loadXmlImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Density
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -35,8 +39,6 @@ fun <T> AsyncImage(
             try {
                 load()
             } catch (e: IOException) {
-                // instead of printing to console, you can also write this to log,
-                // or show some error placeholder
                 e.printStackTrace()
                 null
             }
@@ -50,27 +52,31 @@ fun <T> AsyncImage(
             contentScale = contentScale,
             modifier = modifier
         )
+    }else{
+        Image(
+            painter = painterResource("icon/image_loading.xml"),
+            contentDescription = contentDescription,
+            contentScale = contentScale,
+            modifier = modifier
+        )
     }
 }
 
 /* Loading from file with java.io API */
 
-fun loadImageBitmap(file: File): ImageBitmap =
-    file.inputStream().buffered().use(::loadImageBitmap)
-
-fun loadSvgPainter(file: File, density: Density): Painter =
-    file.inputStream().buffered().use { loadSvgPainter(it, density) }
-
-fun loadXmlImageVector(file: File, density: Density): ImageVector =
-    file.inputStream().buffered().use { loadXmlImageVector(InputSource(it), density) }
+fun loadImageBitmap(file: File): ImageBitmap{
+    if (getPainterByFile(file.absolutePath)==null){
+        addPainterByFile(file.absolutePath,file.inputStream().buffered().use(::loadImageBitmap))
+    }
+    return getPainterByFile(file.absolutePath)!!
+}
 
 /* Loading from network with java.net API */
 
-fun loadImageBitmap(url: String): ImageBitmap =
-    URL(url).openStream().buffered().use(::loadImageBitmap)
+fun loadImageBitmap(url: String): ImageBitmap{
+    if (getPainterByUrl(url)==null){
+        addPainterByUrl(url,URL(url).openStream().buffered().use(::loadImageBitmap))
+    }
+    return getPainterByUrl(url)!!
+}
 
-fun loadSvgPainter(url: String, density: Density): Painter =
-    URL(url).openStream().buffered().use { loadSvgPainter(it, density) }
-
-fun loadXmlImageVector(url: String, density: Density): ImageVector =
-    URL(url).openStream().buffered().use { loadXmlImageVector(InputSource(it), density) }

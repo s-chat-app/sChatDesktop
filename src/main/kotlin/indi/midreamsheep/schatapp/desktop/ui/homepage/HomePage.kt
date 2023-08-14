@@ -5,36 +5,64 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import cn.hutool.core.util.IdUtil
 import indi.midreamsheep.schatapp.desktop.manager.GlobalManager
+import indi.midreamsheep.schatapp.desktop.manager.chat.AbstractInfo
 import indi.midreamsheep.schatapp.desktop.manager.server.Server
+import indi.midreamsheep.schatapp.desktop.service.command.SChatCommandment
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.list.ChatList
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.chat.ChatWindow
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.left.LeftBar
+import indi.midreamsheep.schatapp.frame.net.entity.pojo.Message
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import java.sql.Timestamp
+import java.util.SortedMap
 
 @Composable
 @Preview
-fun homePage(){
+fun homePage(
+    globalManager: GlobalManager,
+    create: Observable<SChatCommandment>
+) {
+    val manager = remember { mutableStateOf(globalManager) }
+    val currentServer = remember { mutableStateOf(manager.value.currentServer) }
+    val currentInfo = remember { mutableStateOf(currentServer.value.currentInfo) }
+    val currentMessages = remember { mutableStateOf(currentInfo.value.messages) }
+    page(manager, currentServer, currentInfo,currentMessages,create)
+}
+
+@Composable
+fun page(
+    manager: MutableState<GlobalManager>,
+    currentServer: MutableState<Server>,
+    currentInfo: MutableState<AbstractInfo>,
+    currentMessages: MutableState<SortedMap<Long, Message>>,
+    observable: Observable<SChatCommandment>
+){
     Row(
         modifier = Modifier.fillMaxSize(),
     ) {
-        val manager = remember { mutableStateOf (GlobalManager.build()) }
-        val currentServer = remember { mutableStateOf(manager.value.currentServer) }
-
-        LeftBar(Modifier.weight(70f).background(MaterialTheme.colors.primary),manager){
-            m,s ->
-            GlobalManager.setCurrentServer(m,s)
+        val produceState = produceState(initialValue = SChatCommandment.getInstance()) {
+            observable.subscribe {
+                value = SChatCommandment.getInstance(value)
+            }
+        }
+        LeftBar(Modifier.weight(70f).background(MaterialTheme.colors.primary), manager) { m, s ->
+            GlobalManager.setCurrentServer(m, s)
             currentServer.value = s
+            currentInfo.value = s.currentInfo
+            currentMessages.value = currentInfo.value.messages
         }
 
-        ChatList(Modifier.weight(280f).background(MaterialTheme.colors.primary),currentServer){
-            server,info->
-            Server.setCurrentInfo(server,info)
+        ChatList(Modifier.weight(280f).background(MaterialTheme.colors.primary), currentServer) { server, info ->
+            Server.setCurrentInfo(server, info)
+            currentInfo.value = info
+            currentMessages.value = currentInfo.value.messages
         }
 
-        ChatWindow(Modifier.weight(800f).background(MaterialTheme.colors.primary))
+        ChatWindow(Modifier.weight(800f).background(MaterialTheme.colors.primary), currentInfo,currentMessages,produceState)
     }
 }

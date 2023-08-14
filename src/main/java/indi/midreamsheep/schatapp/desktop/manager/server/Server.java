@@ -2,12 +2,11 @@ package indi.midreamsheep.schatapp.desktop.manager.server;
 
 import androidx.compose.runtime.MutableState;
 import indi.midreamsheep.schatapp.desktop.manager.chat.AbstractInfo;
-import indi.midreamsheep.schatapp.desktop.manager.chat.channel.ChannelManager;
-import indi.midreamsheep.schatapp.desktop.manager.chat.group.GroupManager;
 import indi.midreamsheep.schatapp.desktop.manager.chat.individual.IndividualManager;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import indi.midreamsheep.schatapp.desktop.service.command.SChatCommandment;
+import indi.midreamsheep.schatapp.frame.net.SChatCommunication;
+import indi.midreamsheep.schatapp.frame.net.SChatCommunicationBuilder;
+import io.reactivex.ObservableEmitter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,10 @@ public class Server {
     private ChannelManager channelManager;*/
     private AbstractInfo currentInfo;
 
+    private SChatCommunication build;
+
+
+
     //获取服务器元数据
     public static Server buildServer() {
         Server server = new Server();
@@ -37,6 +40,10 @@ public class Server {
 /*        server.setGroupManager(new GroupManager());
         server.setChannelManager(new ChannelManager());*/
         return server;
+    }
+
+    public static void setBuilder(SChatCommunicationBuilder builder, ObservableEmitter<SChatCommandment> emitter) {
+        //注入处理器
     }
 
     public ServerMeta getServerMeta() {
@@ -82,5 +89,14 @@ public class Server {
         value.setCurrentInfo(info);
         server.setValue(RECOMPOSE);
         server.setValue(value);
+    }
+
+    public void set(SChatCommunication build) {
+        this.build = build;
+        //TODO 设置build的服务提供者
+    }
+
+    public void init() {
+
     }
 }
