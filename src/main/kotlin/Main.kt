@@ -1,5 +1,3 @@
-package indi.midreamsheep.schatapp.desktop
-
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
@@ -9,7 +7,7 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import indi.midreamsheep.schatapp.desktop.constant.Constants
 import indi.midreamsheep.schatapp.desktop.manager.GlobalManager
-import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal
+import indi.midreamsheep.schatapp.desktop.service.update.UpdateSignal
 import indi.midreamsheep.schatapp.desktop.ui.homepage.homePage
 import indi.midreamsheep.schatapp.desktop.ui.loading.Loading
 import indi.midreamsheep.schatapp.desktop.ui.theme.MainTheme
@@ -54,7 +52,7 @@ fun main() = application {
             onCloseRequest = ::exitApplication,
             state = WindowState(width = Constants.WINDOW_WIDTH.dp, height = Constants.WINDOW_HEIGHT.dp),
         ) {
-            App(globalManagerState.value,create)
+            App(globalManagerState.value, create)
         }
     }
 }

@@ -1,4 +1,4 @@
-package indi.midreamsheep.schatapp.desktop.service.command;
+package indi.midreamsheep.schatapp.desktop.service.update;
 
 public class UpdateSignal {
 

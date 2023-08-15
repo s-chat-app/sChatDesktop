@@ -2,7 +2,7 @@ package indi.midreamsheep.schatapp.desktop.manager;
 
 import androidx.compose.runtime.MutableState;
 import indi.midreamsheep.schatapp.desktop.manager.server.Server;
-import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal;
+import indi.midreamsheep.schatapp.desktop.service.update.UpdateSignal;
 import indi.midreamsheep.schatapp.desktop.service.config.SChatConfiguration;
 import indi.midreamsheep.schatapp.frame.net.SChatCommunicationBuilder;
 import io.reactivex.ObservableEmitter;

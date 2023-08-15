@@ -20,7 +20,7 @@ import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import indi.midreamsheep.schatapp.desktop.manager.chat.AbstractInfo
+import indi.midreamsheep.schatapp.desktop.manager.chat.SChatInfo
 import indi.midreamsheep.schatapp.desktop.manager.server.Server
 import indi.midreamsheep.schatapp.desktop.ui.util.image.AsyncImage
 import indi.midreamsheep.schatapp.desktop.ui.util.image.loadImageBitmap
@@ -30,7 +30,7 @@ import indi.midreamsheep.schatapp.desktop.ui.util.image.loadImageBitmap
 fun ChatList(
     modifier: Modifier,
     currentServer: MutableState<Server>,
-    update: (MutableState<Server>, AbstractInfo) -> Unit
+    update: (MutableState<Server>, SChatInfo) -> Unit
 ) {
     Column(modifier, horizontalAlignment = Alignment.Start) {
         Spacer(modifier = Modifier.height(8.dp))
@@ -83,9 +83,9 @@ fun ChatList(
 
 @Composable
 fun chatItem(
-    info: AbstractInfo,
+    info: SChatInfo,
     server: MutableState<Server>,
-    update: (MutableState<Server>, AbstractInfo) -> Unit
+    update: (MutableState<Server>, SChatInfo) -> Unit
 ) {
     val color = if (server.value.currentInfo.id != info.id) {
         MaterialTheme.colors.primary

@@ -1,15 +1,11 @@
 package indi.midreamsheep.schatapp.desktop.manager.server;
 
 import androidx.compose.runtime.MutableState;
-import indi.midreamsheep.schatapp.desktop.manager.chat.AbstractInfo;
+import indi.midreamsheep.schatapp.desktop.manager.chat.SChatInfo;
 import indi.midreamsheep.schatapp.desktop.manager.chat.individual.IndividualManager;
-import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal;
-import indi.midreamsheep.schatapp.desktop.service.config.SChatConfiguration;
+import indi.midreamsheep.schatapp.desktop.service.service.individual.IndividualService;
 import indi.midreamsheep.schatapp.frame.net.SChatCommunication;
-import indi.midreamsheep.schatapp.frame.net.SChatCommunicationBuilder;
-import io.reactivex.ObservableEmitter;
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +25,11 @@ public class Server {
     private GroupManager groupManager;
     //服务器通道信息
     private ChannelManager channelManager;*/
-    private AbstractInfo currentInfo;
+    private SChatInfo currentInfo;
 
     private SChatCommunication build;
 
-
+    private IndividualService individualService;
 
     //获取服务器元数据
     public static Server buildServer() {
@@ -47,13 +43,13 @@ public class Server {
     }
 
 
-    public List<AbstractInfo> getInfos() {
+    public List<SChatInfo> getInfos() {
         /*        infos.addAll(groupManager);
         infos.addAll(channelManager.getChannels());*/
         return new ArrayList<>(individualManager.getChatList());
     }
 
-    public static void setCurrentInfo(MutableState<Server> server, AbstractInfo info){
+    public static void setCurrentInfo(MutableState<Server> server, SChatInfo info){
         Server value = server.getValue();
         value.setCurrentInfo(info);
         server.setValue(RECOMPOSE);
@@ -62,8 +58,9 @@ public class Server {
 
     public void set(SChatCommunication build) {
         this.build = build;
-        //TODO 设置build的服务提供者
-
+        IndividualService individualService = new IndividualService();
+        build.registerService(individualService);
+        this.individualService = individualService;
     }
 
     public void init() {

@@ -7,12 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.*;
-import java.util.concurrent.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class AbstractInfo {
+public class SChatInfo {
     /**聊天唯一id*/
     protected long id;
     /**聊天类型*/
@@ -23,10 +22,10 @@ public class AbstractInfo {
     /**聊天头像,url*/
     protected String headPictureUrl;
 
-    /**最大堆结构存储消息*/
+    /**sortedMap存储聊天记录*/
     protected SortedMap<Long,Message> messages = Collections.synchronizedSortedMap(new TreeMap<>());
 
-    public AbstractInfo(long id, ChatType type, String name, String headPictureUrl) {
+    public SChatInfo(long id, ChatType type, String name, String headPictureUrl) {
         this.id = id;
         this.type = type;
         this.name = name;

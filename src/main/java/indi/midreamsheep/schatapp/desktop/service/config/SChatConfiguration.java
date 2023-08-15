@@ -1,6 +1,6 @@
 package indi.midreamsheep.schatapp.desktop.service.config;
 
-import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal;
+import indi.midreamsheep.schatapp.desktop.service.update.UpdateSignal;
 import indi.midreamsheep.schatapp.desktop.service.handler.type.DeleteHandler;
 import indi.midreamsheep.schatapp.desktop.service.handler.type.EditHandler;
 import indi.midreamsheep.schatapp.desktop.service.handler.type.SendHandler;

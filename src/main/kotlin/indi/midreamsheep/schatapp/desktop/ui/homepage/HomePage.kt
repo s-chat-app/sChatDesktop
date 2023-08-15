@@ -8,9 +8,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import indi.midreamsheep.schatapp.desktop.manager.GlobalManager
-import indi.midreamsheep.schatapp.desktop.manager.chat.AbstractInfo
+import indi.midreamsheep.schatapp.desktop.manager.chat.SChatInfo
 import indi.midreamsheep.schatapp.desktop.manager.server.Server
-import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal
+import indi.midreamsheep.schatapp.desktop.service.update.UpdateSignal
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.list.ChatList
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.chat.ChatWindow
 import indi.midreamsheep.schatapp.desktop.ui.homepage.composition.left.LeftBar
@@ -35,7 +35,7 @@ fun homePage(
 fun page(
     manager: MutableState<GlobalManager>,
     currentServer: MutableState<Server>,
-    currentInfo: MutableState<AbstractInfo>,
+    currentInfo: MutableState<SChatInfo>,
     currentMessages: MutableState<SortedMap<Long, Message>>,
     observable: Observable<UpdateSignal>
 ){
@@ -60,6 +60,6 @@ fun page(
             currentMessages.value = currentInfo.value.messages
         }
 
-        ChatWindow(Modifier.weight(800f).background(MaterialTheme.colors.primary), currentInfo,currentMessages,produceState)
+        ChatWindow(Modifier.weight(800f).background(MaterialTheme.colors.primary),manager, currentInfo,currentMessages,produceState)
     }
 }

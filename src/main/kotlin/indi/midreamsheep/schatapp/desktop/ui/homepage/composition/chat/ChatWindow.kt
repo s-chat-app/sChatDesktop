@@ -20,8 +20,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import indi.midreamsheep.schatapp.desktop.manager.chat.AbstractInfo
-import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal
+import indi.midreamsheep.schatapp.desktop.manager.GlobalManager
+import indi.midreamsheep.schatapp.desktop.manager.chat.SChatInfo
+import indi.midreamsheep.schatapp.desktop.service.update.UpdateSignal
 import indi.midreamsheep.schatapp.desktop.ui.theme.MainTheme
 import indi.midreamsheep.schatapp.frame.net.entity.pojo.Message
 import java.util.*
@@ -30,7 +31,8 @@ import java.util.*
 @Preview
 fun ChatWindow(
     modifier: Modifier,
-    currentInfo: MutableState<AbstractInfo>,
+    manager: MutableState<GlobalManager>,
+    currentInfo: MutableState<SChatInfo>,
     currentMessages: MutableState<SortedMap<Long, Message>>,
     produceState: State<UpdateSignal>,
 ) {
@@ -42,13 +44,13 @@ fun ChatWindow(
         Column {
             toolBar(Modifier.height(60.dp).background(MaterialTheme.colors.secondaryVariant),currentInfo)
             chat(Modifier.background(MaterialTheme.colors.background).weight(1f),currentMessages,produceState)
-            input(Modifier.height(60.dp).background(MaterialTheme.colors.background))
+            input(Modifier.height(60.dp).background(MaterialTheme.colors.background),manager)
         }
     }
 }
 
 @Composable
-fun toolBar(modifier: Modifier, currentInfo: MutableState<AbstractInfo>) {
+fun toolBar(modifier: Modifier, currentInfo: MutableState<SChatInfo>) {
     Row(modifier.background(MainTheme.secondaryVariant)) {
         Column {
             Text(currentInfo.value.name, fontSize = 24.sp, modifier = Modifier.padding(start = 5.dp, top = 5.dp, bottom = 5.dp))
@@ -75,12 +77,12 @@ fun toolBar(modifier: Modifier, currentInfo: MutableState<AbstractInfo>) {
 @Composable
 fun chat(
     modifier: Modifier,
-    currentInfo: MutableState<SortedMap<Long, Message>>,
+    messages: MutableState<SortedMap<Long, Message>>,
     produceState: State<UpdateSignal>
 ) {
     val update = produceState.value
-    var message by remember{ mutableStateOf(currentInfo.value.values.toList()) }
-    message = currentInfo.value.values.toList()
+    var message by remember{ mutableStateOf(messages.value.values.toList()) }
+    message = messages.value.values.toList()
     LazyColumn(modifier.background(MaterialTheme.colors.background)){
         items(message, key = { it.id }) {
             messageCard(it)
@@ -90,7 +92,7 @@ fun chat(
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun input(modifier: Modifier) {
+fun input(modifier: Modifier, manager: MutableState<GlobalManager>) {
     Row(modifier) {
         var text by rememberSaveable { mutableStateOf("") }
         OutlinedTextField(
@@ -131,6 +133,7 @@ fun input(modifier: Modifier) {
                                 height = 20.dp
                             )
                             .clickable {
+                                sendMessage(manager,text,manager.value.currentServer.currentInfo.id)
                                 text = ""
                             },
                     )
@@ -146,6 +149,7 @@ fun input(modifier: Modifier) {
             modifier = Modifier.onPreviewKeyEvent {
                 when {
                     (it.key == Key.Enter && it.type == KeyEventType.KeyUp) -> {
+                        sendMessage(manager,text,manager.value.currentServer.currentInfo.id)
                         text = ""
                         true
                     }
@@ -155,4 +159,12 @@ fun input(modifier: Modifier) {
             }.height(47.dp).weight(1f).padding(end = 10.dp, start = 10.dp),
         )
     }
+}
+
+fun sendMessage(
+    manager: MutableState<GlobalManager>,
+    message:String,
+    messageTo:Long
+){
+
 }

@@ -1,6 +1,6 @@
 package indi.midreamsheep.schatapp.desktop.service.handler;
 
-import indi.midreamsheep.schatapp.desktop.service.command.UpdateSignal;
+import indi.midreamsheep.schatapp.desktop.service.update.UpdateSignal;
 import indi.midreamsheep.schatapp.frame.net.api.handler.type.ChatHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.reactivex.ObservableEmitter;
