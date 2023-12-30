@@ -9,8 +9,11 @@ import live.midreamsheep.frame.sioc.core.context.application.CoreApplicationCont
 import live.midreamsheep.frame.sioc.core.context.factory.CoreBeanFactory;
 import live.midreamsheep.frame.sioc.scan.PackageBeanDefinitionsFactory;
 import live.midreamsheep.frame.sioc.scan.parse.CoreClassParserToDefinition;
+import lombok.Getter;
 
+@Getter
 public class SChatApplicationContext {
+
     private static final ApplicationContext applicationContext;
     static {
         ApplicationContextBuilder applicationContextBuilder = new ApplicationContextBuilder();
@@ -28,7 +31,4 @@ public class SChatApplicationContext {
     }
 
 
-    public static ApplicationContext getApplicationContext() {
-        return applicationContext;
-    }
 }

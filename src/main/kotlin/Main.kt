@@ -11,9 +11,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
+import indi.midreamsheep.schatapp.desktop.Poho
 import indi.midreamsheep.schatapp.desktop.constant.Constants
 import indi.midreamsheep.schatapp.desktop.context.SChatApplicationContext
 import indi.midreamsheep.schatapp.desktop.navigation.Navigation
+import indi.midreamsheep.schatapp.desktop.ui.homepage.homePage
 import indi.midreamsheep.schatapp.desktop.ui.theme.MainTheme
 
 val navigation = Navigation()
@@ -22,7 +24,7 @@ var nowPage:String = "LOADING"
 @Composable
 @Preview
 fun App() {
-
+    homePage()
 }
 
 fun main() = application {
