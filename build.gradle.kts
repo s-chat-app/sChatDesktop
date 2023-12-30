@@ -20,9 +20,12 @@ dependencies {
     implementation(compose.desktop.currentOs)
     implementation(compose.material3)
     implementation(compose.ui)
-    implementation("org.xerial:sqlite-jdbc:3.27.2.1")
+    implementation("org.xerial:sqlite-jdbc:3.41.2.2")
     /*导入本地jar包*/
     implementation(files("libs/SChatCommunicationFramework.jar"))
+    implementation(files("libs/SIOC.jar"))
+    implementation(files("libs/DenpendenceInjector.jar"))
+    implementation(files("libs/PackageScanner.jar"))
     implementation("io.reactivex.rxjava2:rxjava:2.2.10")
 
 }
