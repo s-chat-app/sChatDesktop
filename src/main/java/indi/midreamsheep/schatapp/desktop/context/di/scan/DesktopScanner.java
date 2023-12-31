@@ -1,4 +1,4 @@
-package indi.midreamsheep.schatapp.desktop.tool.di.scan;
+package indi.midreamsheep.schatapp.desktop.context.di.scan;
 
 import live.midreamsheep.frame.sioc.scan.inter.ClassesAbstractScanner;
 

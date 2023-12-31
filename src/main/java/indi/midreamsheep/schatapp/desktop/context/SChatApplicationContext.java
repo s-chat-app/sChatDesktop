@@ -1,7 +1,6 @@
 package indi.midreamsheep.schatapp.desktop.context;
 
-import cn.hutool.core.util.ClassUtil;
-import indi.midreamsheep.schatapp.desktop.tool.di.scan.DesktopScanner;
+import indi.midreamsheep.schatapp.desktop.context.di.scan.DesktopScanner;
 import live.midreamsheep.frame.sioc.api.builder.application.ApplicationContextBuilder;
 import live.midreamsheep.frame.sioc.api.context.application.ApplicationContext;
 import live.midreamsheep.frame.sioc.core.context.CoreBeanHandlerInjector;
@@ -9,9 +8,7 @@ import live.midreamsheep.frame.sioc.core.context.application.CoreApplicationCont
 import live.midreamsheep.frame.sioc.core.context.factory.CoreBeanFactory;
 import live.midreamsheep.frame.sioc.scan.PackageBeanDefinitionsFactory;
 import live.midreamsheep.frame.sioc.scan.parse.CoreClassParserToDefinition;
-import lombok.Getter;
 
-@Getter
 public class SChatApplicationContext {
 
     private static final ApplicationContext applicationContext;
@@ -30,5 +27,8 @@ public class SChatApplicationContext {
         applicationContext = applicationContextBuilder.build();
     }
 
+    public static ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
 
 }

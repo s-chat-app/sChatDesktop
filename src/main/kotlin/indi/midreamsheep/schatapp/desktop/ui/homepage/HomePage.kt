@@ -9,6 +9,10 @@ import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.sideBar
 @Composable
 fun homePage(){
     Row {
+        /**
+         * 模拟生成数据
+         * */
+
         //侧边栏
         sideBar(Modifier.weight(1f))
         //聊天页

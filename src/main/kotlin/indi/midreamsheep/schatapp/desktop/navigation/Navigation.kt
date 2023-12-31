@@ -1,6 +1,6 @@
 package indi.midreamsheep.schatapp.desktop.navigation
 
-class Navigation {
+class Navigation{
     private val uiPage:Map<String,Unit> = mapOf()
     /**
      * 注册page
