@@ -22,11 +22,17 @@ dependencies {
     implementation(compose.ui)
     implementation("org.xerial:sqlite-jdbc:3.41.2.2")
     /*导入本地jar包*/
-    implementation(files("libs/SChatCommunicationFramework.jar"))
     implementation(files("libs/SIOC.jar"))
     implementation(files("libs/DenpendenceInjector.jar"))
     implementation(files("libs/PackageScanner.jar"))
     implementation("io.reactivex.rxjava2:rxjava:2.2.10")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.0")
+    /*导入netty*/
+    implementation("io.netty:netty-all:4.1.86.Final")
+    /*导入commons-codec*/
+    implementation("commons-codec:commons-codec:1.15")
+    /*导入fastjson*/
+    implementation("com.alibaba:fastjson:1.2.78")
 
 }
 

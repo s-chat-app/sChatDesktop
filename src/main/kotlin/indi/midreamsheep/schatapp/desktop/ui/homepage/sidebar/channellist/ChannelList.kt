@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -19,21 +20,36 @@ import indi.midreamsheep.schatapp.desktop.context.SChatApplicationContext
 import indi.midreamsheep.schatapp.desktop.entity.account.chat.channel.ChatChannel
 import indi.midreamsheep.schatapp.desktop.entity.account.chat.server.ChatServer
 import indi.midreamsheep.schatapp.desktop.entity.account.chat.server.ServerHandler
+import indi.midreamsheep.schatapp.desktop.net.server.ServerNet
 import indi.midreamsheep.schatapp.desktop.tool.image.ImageManager
+import indi.midreamsheep.schatapp.desktop.ui.controller.sidebar.ChannelListController
+import indi.midreamsheep.schatapp.desktop.ui.controller.sidebar.ChannelListControllerFun
 import indi.midreamsheep.schatapp.desktop.ui.util.image.AsyncImage
+import io.reactivex.BackpressureStrategy
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.withContext
 import java.util.Date
 import kotlin.random.Random
 
 @Composable
 fun channelList(nowSelected: Long) {
-    //通过nowSelected获取channelList
-    val serverHandler = SChatApplicationContext.getApplicationContext().getBean(ServerHandler::class.java)
-    val channelManger = serverHandler.getChannel(nowSelected).channelManger
+    //建立状态监听
+    val controller = SChatApplicationContext.getApplicationContext().getBean(ChannelListController::class.java)
+    val state by controller.channelListControllerOE.chatChannelObservable.toFlowable(
+        BackpressureStrategy.BUFFER
+    ).asFlow().collectAsState(
+        initial = ChannelListControllerFun {
+        }
+    )
+    //执行回调
+    state.change(controller.chatChannelMap)
+
+    //显示列表
+    val list = controller.list
     LazyColumn {
-        items(channelManger.channels.size){
-            channelItem(channelManger.channels[it])
+        items(list.size){
+            channelItem(list[it])
         }
     }
 }

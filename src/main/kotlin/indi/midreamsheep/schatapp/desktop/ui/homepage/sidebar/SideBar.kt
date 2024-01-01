@@ -15,6 +15,8 @@ import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.serverlist.serverL
 @Composable
 fun sideBar(
     modifier: Modifier,
+    nowSelectedServer:Long,
+    selectRecall:(Long)->Unit
 ) {
     //侧边栏
     Column(modifier.width(368.dp).background(Color(245,250,255), shape = RoundedCornerShape(0.dp, 0.dp, 0.dp, 0.dp))
@@ -28,18 +30,8 @@ fun sideBar(
         Row(
             Modifier.width(368.dp)
         ) {
-
-            var nowSelected by remember { mutableStateOf(3L) }
-            serverList(nowSelected,
-            ){
-                //点击事件
-                nowSelected = it
-            }
-            //联系人列表
-            channelList(nowSelected)
+            serverList(nowSelectedServer,selectRecall)
+            channelList(nowSelectedServer)
         }
     }
 }
-
-
-

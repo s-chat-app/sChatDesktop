@@ -7,10 +7,6 @@ import indi.midreamsheep.schatapp.desktop.tool.image.ImageManager;
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Comment;
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Injector;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 @Comment
 public class ImageToolClientImpl implements ImageToolClient {
 

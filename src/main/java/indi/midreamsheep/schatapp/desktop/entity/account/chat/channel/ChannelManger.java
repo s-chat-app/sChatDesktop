@@ -1,10 +1,5 @@
 package indi.midreamsheep.schatapp.desktop.entity.account.chat.channel;
 
-import indi.midreamsheep.schatapp.desktop.context.SChatApplicationContext;
-import indi.midreamsheep.schatapp.desktop.entity.account.chat.channel.friend.FriendChannel;
-import indi.midreamsheep.schatapp.desktop.entity.account.chat.server.ChatServer;
-import indi.midreamsheep.schatapp.desktop.tool.image.ImageManager;
-import indi.midreamsheep.schatapp.frame.net.api.handler.type.ChatHandler;
 import lombok.Getter;
 
 import java.io.File;
