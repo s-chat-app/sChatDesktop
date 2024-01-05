@@ -5,7 +5,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import indi.midreamsheep.schatapp.desktop.context.SChatApplicationContext
 import indi.midreamsheep.schatapp.desktop.entity.account.chat.server.ServerHandler
-import indi.midreamsheep.schatapp.desktop.net.GlobalInfo
+import indi.midreamsheep.schatapp.desktop.data.runtime.variable.GlobalInfo
 import indi.midreamsheep.schatapp.desktop.ui.homepage.chatpage.chatPage
 import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.sideBar
 
@@ -18,14 +18,12 @@ fun homePage(){
         val globalInfo = context.getBean(GlobalInfo::class.java)
 
         var nowSelectedServer by remember { mutableStateOf(globalInfo.selectedServerId.get()) }
-        var nowSelectedChannel by remember { mutableStateOf(globalInfo.selectedChannelId.get()) }
 
         sideBar(Modifier.weight(1f),nowSelectedServer){
             nowSelectedServer = it
-            nowSelectedChannel =  serverHandler.getChannel(it).channelManger.channels[0].channelId
             //更新全局选中频道
             globalInfo.selectedServerId.set(it)
-            globalInfo.selectedChannelId.set(nowSelectedChannel)
+            globalInfo.selectedChannelId.set( serverHandler.getChannel(it).channelManger.channels[0].channelId)
         }
         //聊天页
         chatPage(

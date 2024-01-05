@@ -1,4 +1,4 @@
-package indi.midreamsheep.schatapp.desktop.local.resource.config;
+package indi.midreamsheep.schatapp.desktop.data.local.resource.config;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

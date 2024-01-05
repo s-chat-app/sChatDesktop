@@ -1,4 +1,4 @@
-package indi.midreamsheep.schatapp.desktop.constant;
+package indi.midreamsheep.schatapp.desktop.data.runtime.constant;
 
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Comment;
 

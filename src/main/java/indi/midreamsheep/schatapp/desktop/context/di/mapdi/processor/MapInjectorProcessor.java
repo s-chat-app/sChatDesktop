@@ -24,13 +24,13 @@ public class MapInjectorProcessor extends RegisterProcessor {
     @Override
     public void process(ClassMetaDefinition classMetaDefinition, List<ContextHandler> list) {
         MapInjector annotation = classMetaDefinition.getAnnotationInfo().getAnnotation(MapInjector.class);
+        String target = annotation.target();
+        if (!map.containsKey(target)) {
+            map.put(target,new LinkedList<>());
+        }
         if (annotation.Inject()) {
             //是注入方，建立映射
-            String target = annotation.target();
             String value = annotation.value();
-            if (!map.containsKey(target)) {
-                map.put(target,new LinkedList<>());
-            }
             map.get(target).add(new MapInjectorMapping(value,classMetaDefinition.getOwnClass()));
             return;
         }
@@ -39,7 +39,6 @@ public class MapInjectorProcessor extends RegisterProcessor {
             if ((annotation = fieldInter.getAnnotationInfo().getAnnotation(MapInjector.class)) == null) {
                 continue;
             }
-            String target = annotation.target();
             List<MapInjectorMapping> mapInjectorMappings = map.get(target);
             list.add(new MapInjectorHandler(mapInjectorMappings,fieldInter.getField(),classMetaDefinition.getOwnClass()));
         }

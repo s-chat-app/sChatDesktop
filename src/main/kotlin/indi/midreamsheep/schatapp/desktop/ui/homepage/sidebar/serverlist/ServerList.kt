@@ -25,6 +25,7 @@ fun serverList(
 
     val listState = rememberLazyListState()
     val channels = SChatApplicationContext.getApplicationContext().getBean(ServerHandler::class.java).channels
+
     LazyColumn(
         modifier =  Modifier.width(43.dp)
             .fillMaxHeight()

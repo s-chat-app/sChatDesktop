@@ -4,7 +4,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import indi.midreamsheep.schatapp.desktop.context.SChatApplicationContext
-import indi.midreamsheep.schatapp.desktop.local.resource.LocalResourceManager
+import indi.midreamsheep.schatapp.desktop.data.local.resource.LocalResourceManager
 import indi.midreamsheep.schatapp.desktop.ui.homepage.homePage
 import indi.midreamsheep.schatapp.desktop.ui.loading.loadingPage
 import kotlinx.coroutines.Dispatchers

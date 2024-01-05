@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.channellist.channelList
+import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.selectlist.selectList
 import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.searchbox.chattyTopBar
 import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.serverlist.serverList
 
@@ -31,7 +31,7 @@ fun sideBar(
             Modifier.width(368.dp)
         ) {
             serverList(nowSelectedServer,selectRecall)
-            channelList(nowSelectedServer)
+            selectList()
         }
     }
 }

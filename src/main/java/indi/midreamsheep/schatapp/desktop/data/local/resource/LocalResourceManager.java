@@ -1,7 +1,7 @@
-package indi.midreamsheep.schatapp.desktop.local.resource;
+package indi.midreamsheep.schatapp.desktop.data.local.resource;
 
 import indi.midreamsheep.schatapp.desktop.context.di.mapdi.annotation.MapInjector;
-import indi.midreamsheep.schatapp.desktop.local.resource.config.ConfigManager;
+import indi.midreamsheep.schatapp.desktop.data.local.resource.config.ConfigManager;
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Comment;
 
 import java.io.IOException;

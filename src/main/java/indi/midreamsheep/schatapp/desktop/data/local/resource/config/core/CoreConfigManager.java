@@ -1,8 +1,8 @@
-package indi.midreamsheep.schatapp.desktop.local.resource.config.core;
+package indi.midreamsheep.schatapp.desktop.data.local.resource.config.core;
 
-import indi.midreamsheep.schatapp.desktop.constant.GlobalConstants;
+import indi.midreamsheep.schatapp.desktop.data.runtime.constant.GlobalConstants;
 import indi.midreamsheep.schatapp.desktop.context.di.mapdi.annotation.MapInjector;
-import indi.midreamsheep.schatapp.desktop.local.resource.config.AbstractConfigManager;
+import indi.midreamsheep.schatapp.desktop.data.local.resource.config.AbstractConfigManager;
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Comment;
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Injector;
 
