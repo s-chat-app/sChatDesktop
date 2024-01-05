@@ -1,6 +1,7 @@
 package indi.midreamsheep.schatapp.desktop.tool.image;
 
 import androidx.compose.ui.graphics.ImageBitmap;
+import androidx.compose.ui.graphics.painter.Painter;
 import androidx.compose.ui.res.ImageResources_desktopKt;
 import indi.midreamsheep.schatapp.desktop.client.service.tool.image.ImageToolClient;
 import indi.midreamsheep.schatapp.desktop.tool.id.IdUtil;
@@ -25,8 +26,8 @@ public class ImageManager {
 
     /**
      * 用于存储具体的图像数据
-     * */
-    private final Map<Long,ImageProxy> imageProxyMap = new HashMap<>();
+     */
+    private final Map<Long, ImageProxy> imageProxyMap = new HashMap<>();
 
     public long putImage(File file) {
         try {
@@ -44,20 +45,20 @@ public class ImageManager {
         }
     }
 
-    public long putImageLazy(File file){
+    public long putImageLazy(File file) {
         return putImage(new LazyImageProxy(file));
     }
 
-    public long putImage(ImageProxy imageProxy){
+    public long putImage(ImageProxy imageProxy) {
         long l = IdUtil.generateId();
-        imageProxyMap.put(l,imageProxy);
+        imageProxyMap.put(l, imageProxy);
         return l;
     }
 
     public long putImage(ImageBitmap bitmap) {
         ImageProxy imageProxy = new NoImageProxy(bitmap);
         long l = IdUtil.generateId();
-        imageProxyMap.put(l,imageProxy);
+        imageProxyMap.put(l, imageProxy);
         return l;
     }
 }

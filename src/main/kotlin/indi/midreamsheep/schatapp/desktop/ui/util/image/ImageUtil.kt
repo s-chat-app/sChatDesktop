@@ -5,19 +5,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.loadImageBitmap
 import androidx.compose.ui.res.painterResource
 import indi.midreamsheep.schatapp.desktop.context.SChatApplicationContext
-import indi.midreamsheep.schatapp.desktop.client.service.tool.image.ImageToolClient
 import indi.midreamsheep.schatapp.desktop.tool.image.ImageManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.File
-import java.io.IOException
-import java.net.URL
+import androidx.compose.ui.graphics.drawscope.CanvasDrawScope
 
 @Composable
 fun AsyncImage(

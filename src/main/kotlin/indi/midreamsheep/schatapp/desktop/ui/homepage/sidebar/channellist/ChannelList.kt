@@ -44,7 +44,6 @@ fun channelList(nowSelected: Long) {
     )
     //执行回调
     state.change(controller.chatChannelMap)
-
     //显示列表
     val list = controller.list
     LazyColumn {

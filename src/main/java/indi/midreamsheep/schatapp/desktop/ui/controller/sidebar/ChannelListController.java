@@ -1,11 +1,12 @@
 package indi.midreamsheep.schatapp.desktop.ui.controller.sidebar;
 
+import androidx.compose.runtime.Composable;
 import indi.midreamsheep.schatapp.desktop.entity.account.chat.channel.ChatChannel;
+import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.channellist.ChannelListKt;
+import kotlin.Unit;
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Comment;
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Injector;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,9 +27,9 @@ public class ChannelListController {
     @Injector
     private ChannelListControllerOE channelListControllerOE;
 
+
     public List<ChatChannel> getList() {
         return new ArrayList<>(chatChannelMap.values());
     }
-
 
 }
