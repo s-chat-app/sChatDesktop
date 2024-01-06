@@ -2,12 +2,11 @@ package indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.searchbox
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.ui.input.key.Key
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
@@ -18,19 +17,17 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.key
-import androidx.compose.ui.input.key.onKeyEvent
+import androidx.compose.ui.input.key.*
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import indi.midreamsheep.schatapp.desktop.context.SChatApplicationContext
 import indi.midreamsheep.schatapp.desktop.data.runtime.variable.GlobalInfo
 import indi.midreamsheep.schatapp.desktop.ui.controller.sidebar.ChannelListControllerOE
-import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.selectlist.SelectListItem
+import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.subsiderbar.SubSideBarFun
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.awt.List
 import java.net.URL
-import java.util.LinkedList
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -55,7 +52,7 @@ fun chattyTopBar(){
             .focusRequester(focusRequester) // 添加 focusRequester
             .onFocusChanged { isFocused = it.isFocused } // 监听焦点变化
             .onKeyEvent {keyEvent ->
-                if (isFocused && keyEvent.key == Key.Enter) {
+                if (isFocused && keyEvent.key == Key.Enter&&keyEvent.type== KeyEventType.KeyDown) {
                     search(searchState.value)
                     true
                 } else {
@@ -93,14 +90,22 @@ fun search(value: String) {
     //建立协程
     GlobalScope.launch {
         //发送搜索请求
-        val result:MutableList<String> = mutableListOf()
-        for (i in 0..10) {
-            val readText = URL("https://v1.hitokoto.cn/?c=f&encode=text").readText()
-            result.add(readText)
-        }
+        val readText = URL("https://v1.hitokoto.cn/?c=f&encode=text").readText()
         val oe = SChatApplicationContext.getApplicationContext().getBean(ChannelListControllerOE::class.java)
         val globalInfo = SChatApplicationContext.getApplicationContext().getBean(GlobalInfo::class.java)
         globalInfo.sideBarSelectionType.set(1)
-        oe.chatChannelObservableEmitter.onNext (Test(result) )
+        oe.chatChannelObservableEmitter.onNext(
+            SubSideBarFun {
+                {
+                    val result = remember { mutableStateListOf<String>() }
+                    result.add(readText)
+                    LazyColumn{
+                        items(result.size){
+                            androidx.compose.material.Text(text = result[it], fontSize = 20.sp)
+                        }
+                    }
+                }
+            }
+        )
     }
 }

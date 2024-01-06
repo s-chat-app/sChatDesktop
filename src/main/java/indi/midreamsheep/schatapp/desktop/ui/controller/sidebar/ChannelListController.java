@@ -2,8 +2,10 @@ package indi.midreamsheep.schatapp.desktop.ui.controller.sidebar;
 
 import indi.midreamsheep.schatapp.desktop.data.runtime.variable.GlobalInfo;
 import indi.midreamsheep.schatapp.desktop.entity.account.chat.channel.ChatChannel;
-import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.selectlist.SelectListItem;
-import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.selectlist.selectitems.channelitem.ChannelItem;
+import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.subsiderbar.selectitems.SelectListItem;
+import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.subsiderbar.SubSideBarFun;
+import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.subsiderbar.selectitems.SelectList;
+import indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.subsiderbar.selectitems.channelitem.ChannelItem;
 import io.reactivex.ObservableEmitter;
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Comment;
 import live.midreamsheep.frame.sioc.di.annotation.basic.comment.Injector;
@@ -36,8 +38,8 @@ public class ChannelListController {
     @Injector
     private GlobalInfo globalInfo;
 
-    public List<ChatChannel> getList() {
-        return new ArrayList<>(chatChannelMap.values());
+    public List<SelectListItem> getList() {
+        return new ArrayList<>(selectListItemMap.values());
     }
 
     public void add(ChatChannel chatChannel) {
@@ -58,10 +60,10 @@ public class ChannelListController {
         if (globalInfo.getSideBarSelectionType().get()!=0){
             return;
         }
-        ObservableEmitter<ChannelListControllerFun> chatChannelObservableEmitter = channelListControllerOE.getChatChannelObservableEmitter();
+        ObservableEmitter<SubSideBarFun> chatChannelObservableEmitter = channelListControllerOE.getChatChannelObservableEmitter();
         if (chatChannelObservableEmitter == null) {
             return;
         }
-        chatChannelObservableEmitter.onNext(() -> new ArrayList<>(selectListItemMap.values()));
+        chatChannelObservableEmitter.onNext(new SelectList());
     }
 }

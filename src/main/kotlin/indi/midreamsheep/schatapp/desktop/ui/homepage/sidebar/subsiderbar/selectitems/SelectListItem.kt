@@ -1,4 +1,4 @@
-package indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.selectlist
+package indi.midreamsheep.schatapp.desktop.ui.homepage.sidebar.subsiderbar.selectitems
 
 import androidx.compose.runtime.Composable
 
